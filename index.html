@@ -3,141 +3,449 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>크롤러 케어 - 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호</title>
+  <title>구글 봇 정밀 검진 및 크롤 버짓 밀착 간호 — OSAKA NURSE</title>
+  <meta name="description" content="크롤러 방문 빈도 활성화, 크롤 버짓 낭비 원인 제거, 인덱싱 바이탈 케어. 당신의 사이트에 구글 스파이더가 24시간 상주하도록 간호합니다.">
+  <link rel="canonical" href="https://nurse-kyujin.online/">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  
   <style>
-    
     :root {
-      --bg: #fcf8f2;
-      --fg: #2e2522;
-      --dim: #7f5539;
-      --accent: #b76e79;
-      --card-bg: #ffffff;
-      --border: #f5ebe0;
-      --font: 'Outfit', sans-serif;
+      --bg-white: #ffffff;
+      --bg-light: #f8fafc;
+      --text-charcoal: #0f172a;
+      --text-slate: #475569;
+      --accent-blue: #0284c7;
+      --accent-red: #ef4444;
+      --border-thin: #e2e8f0;
+      --font-swiss: 'Outfit', 'Inter', sans-serif;
+      --font-kr: 'Noto Sans KR', sans-serif;
     }
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font);
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-white);
+      color: var(--text-charcoal);
+      font-family: var(--font-swiss), var(--font-kr);
       line-height: 1.7;
+      letter-spacing: -0.01em;
     }
+
     .container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 0 40px;
     }
+
+    /* Swiss Minimal Grid Layout Header */
+    header {
+      border-bottom: 0.5px solid var(--text-charcoal);
+      padding: 30px 0;
+      background: var(--bg-white);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+      color: var(--text-charcoal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo::before {
+      content: '';
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: var(--accent-red);
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: var(--text-slate);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-charcoal);
+    }
+
+    /* Hero */
     .hero {
-      padding: 4rem 3rem;
-      background: linear-gradient(135deg, #fcf8f2, #f5ebe0);
-      border-radius: 32px 8px;
-      text-align: center;
-      margin-bottom: 3rem;
-      box-shadow: 0 10px 30px rgba(127, 85, 57, 0.03);
+      padding: 100px 0 60px 0;
+      border-bottom: 0.5px solid var(--text-charcoal);
     }
-    .hero-title {
+
+    .swiss-code {
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--text-charcoal);
+      margin-bottom: 30px;
+    }
+
+    h1 span {
+      color: var(--accent-blue);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 50px;
+      margin-top: 40px;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-slate);
+      font-weight: 300;
+    }
+
+    .btn-minimal {
+      display: inline-block;
+      border: 0.5px solid var(--text-charcoal);
+      color: var(--text-charcoal);
+      padding: 12px 30px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .btn-minimal:hover {
+      background: var(--text-charcoal);
+      color: var(--bg-white);
+    }
+
+    /* Chart Section */
+    .section {
+      padding: 80px 0;
+      border-bottom: 0.5px solid var(--border-thin);
+    }
+
+    .section.dark {
+      background-color: var(--bg-light);
+      border-bottom: 0.5px solid var(--text-charcoal);
+    }
+
+    .grid-vitals {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background-color: var(--border-thin);
+      border: 0.5px solid var(--border-thin);
+      margin-top: 40px;
+    }
+
+    .vital-box {
+      background-color: var(--bg-white);
+      padding: 30px;
+      text-align: left;
+    }
+
+    .vital-num {
       font-size: 2.2rem;
       font-weight: 800;
-      color: var(--fg);
-      margin-bottom: 0.8rem;
+      color: var(--text-charcoal);
+      line-height: 1.1;
     }
-    .hero-subtitle {
-      font-size: 1rem;
-      color: var(--dim);
+
+    .vital-title {
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-weight: 600;
+      color: var(--text-slate);
+      margin-top: 10px;
     }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px 8px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 20px rgba(127, 85, 57, 0.02);
+
+    /* Protocols / Services Table */
+    .protocol-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
     }
-    .card h2 {
-      margin-top: 0;
-      color: var(--dim);
-      font-size: 1.35rem;
+
+    .protocol-table th {
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-slate);
+      padding: 15px 0;
+      border-bottom: 1.5px solid var(--text-charcoal);
     }
-    .grid {
+
+    .protocol-table td {
+      padding: 20px 0;
+      border-bottom: 0.5px solid var(--border-thin);
+      font-size: 0.88rem;
+    }
+
+    .protocol-title {
+      font-weight: 600;
+      color: var(--text-charcoal);
+    }
+
+    .protocol-desc {
+      color: var(--text-slate);
+      font-weight: 300;
+    }
+
+    /* Pricing Plans */
+    .price-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 40px;
     }
-    .link-t1 {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px dashed var(--accent);
-      font-weight: bold;
+
+    .price-box {
+      border: 0.5px solid var(--border-thin);
+      padding: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+
+    .price-box.premium {
+      border-color: var(--text-charcoal);
+    }
+
+    .price-header {
+      margin-bottom: 30px;
+    }
+
+    .price-header h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .price-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent-blue);
+    }
+
+    .price-list {
+      list-style: none;
+      margin-bottom: 40px;
+      font-size: 0.84rem;
+      color: var(--text-slate);
+    }
+
+    .price-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price-list li::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 4px;
+      background: var(--accent-red);
+    }
+
+    /* Footer */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-      text-align: center;
-      color: var(--dim);
-      font-size: 0.85rem;
+      padding: 80px 0 50px 0;
+      text-align: left;
+      font-size: 0.72rem;
+      color: var(--text-slate);
     }
-      
-    .post-link {
-      display: block;
-      color: var(--accent);
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 100px;
+      border-top: 0.5px solid var(--border-thin);
+      padding-top: 40px;
+    }
+
+    .footer-links a {
+      color: var(--text-charcoal);
       text-decoration: none;
-      margin-bottom: 0.8rem;
-      font-size: 1.05rem;
+      font-weight: 600;
+      margin-right: 15px;
     }
-    .post-link:hover {
-      text-decoration: underline;
-    }
-    .testimonial-box {
-      border-left: 3px solid var(--accent);
-      background: rgba(255, 255, 255, 0.02);
-      padding: 1rem 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .reviewer-name {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--dim);
-      margin-top: 0.5rem;
-      text-align: right;
+
+    @media (max-width: 768px) {
+      .hero-meta { grid-template-columns: 1fr; gap: 20px; }
+      .grid-vitals { grid-template-columns: 1fr 1fr; }
+      .price-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      nav { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    
-      <div class="hero">
-        <h1 class="hero-title">구글 봇 정밀 검진 및 크롤 버짓 밀착 간호</h1>
-        <p class="hero-subtitle">☘️ INTEGRATED CARE &amp; RESTORATION REPORT</p>
-      </div>
 
-    <section class="card">
-      <h2>소개 및 비전</h2>
-      <p>본 포털은 크롤러 케어와 관련해 소비자들에게 절대적으로 필요한 정보를 100% 정찰제 가격 정보와 예약 에티켓 기준으로 분석하여 서비스합니다.</p>
-      <p>구글 봇 정밀 검진 및 크롤 버짓 밀착 간호를 찾는 비즈니스 바이어나 개인 고객들이 현명하고 합리적인 조건 하에 안심하고 플레이스를 선택하실 수 있도록 가이드를 성실히 업데이트합니다.</p>
+  <header>
+    <div class="container nav-wrap">
+      <a href="/" class="logo">OSAKA NURSE</a>
+      <nav>
+        <a href="#vitals">vitals</a>
+        <a href="#protocols">nursing routine</a>
+        <a href="#pricing">pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="swiss-code">Crawl Budget Intensive Care Unit</div>
+        <h1>구글 봇 정밀 검진<br><span>크롤 버짓</span> 밀착 간호.</h1>
+        <div class="hero-meta">
+          <p class="hero-desc">구글 스파이더 봇의 무의미한 리소스 소모를 막고, 핵심 랭킹 페이지로 크롤 파워를 강제 수혈합니다. E-E-A-T 기반의 정밀 로봇 제어와 IndexNow 자동 투여를 통한 고신뢰도 웹마스터 널싱 프로그램.</p>
+          <div>
+            <a href="#pricing" class="btn-minimal">간호 의뢰 신청</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="section dark" id="vitals">
+      <div class="container">
+        <h2>Crawl Index Vitals</h2>
+        <p style="color: var(--text-slate); font-weight: 300;">실시간 측정 가능한 검색 봇 반응도 지표</p>
+        <div class="grid-vitals">
+          <div class="vital-box">
+            <div class="vital-num">180ms</div>
+            <div class="vital-title">Response Time</div>
+          </div>
+          <div class="vital-box">
+            <div class="vital-num">2.4x</div>
+            <div class="vital-title">Crawl Multiplier</div>
+          </div>
+          <div class="vital-box">
+            <div class="vital-num">98.8%</div>
+            <div class="vital-title">Index Ratio</div>
+          </div>
+          <div class="vital-box">
+            <div class="vital-num">0 ms</div>
+            <div class="vital-title">Rendering Delay</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    
-    <!-- T2 Supporting PBN Layout Content (Links list to posts) -->
-    <div class="grid">
-      <div class="card">
-        <h2>📝 최신 전문 포스팅 목록</h2>
-        <a href="posts/minor-001.html" class="post-link">📄 [마이너 가이드] 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호 실시간 만족도 분석 리포트</a>
-        <a href="posts/minor-002.html" class="post-link">📄 [비교 꿀팁] 실패를 예방하는 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호 예약 시 3대 체크리스트</a>
-        <a href="posts/major-003.html" class="post-link">📄 [종합 검증] 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호 완벽 비교 가이드 및 투명성 검증 (백링크 포함)</a>
+    <section class="section" id="protocols">
+      <div class="container">
+        <h2>Nursing Care Protocols</h2>
+        <table class="protocol-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Protocol ID</th>
+              <th style="width: 70%;">Surgical description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="protocol-title">01 / Detox</td>
+              <td class="protocol-desc">불필요한 파라미터 필터링, 정적 경로 압축 및 중복 수렴 처리를 통해 구글 봇의 불필요한 크롤 소모를 0으로 수렴시킵니다.</td>
+            </tr>
+            <tr>
+              <td class="protocol-title">02 / Suture</td>
+              <td class="protocol-desc">헤더 구조 최적화 및 0.5px 미학 레이아웃으로 구글봇에게 높은 가독성을 유도, 모바일 렌더링 로드를 줄입니다.</td>
+            </tr>
+            <tr>
+              <td class="protocol-title">03 / Infusion</td>
+              <td class="protocol-desc">서치콘솔 라운드로빈 API 및 IndexNow를 병행 투여하여 새로 발행된 정밀 콘텐츠가 10분 내로 구글 색인에 안착하도록 설계합니다.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="card">
-        <h2>🌐 1:1 도메인 메타포 해설</h2>
-        <p>이 사이트는 로컬 예약 파이프라인의 안전성과 투명한 정보 검증을 주도하는 소셜 인프라 PBN 매칭 페이지로 작동하고 있습니다.</p>
+    </section>
+
+    <section class="section dark" id="pricing">
+      <div class="container">
+        <h2>Emergency Care Budget</h2>
+        <div class="price-grid">
+          <div class="price-box">
+            <div class="price-header">
+              <h3>Regular Care</h3>
+              <div class="price-val">₩650,000</div>
+            </div>
+            <ul class="price-list">
+              <li>일일 크롤 로그 정밀 검진</li>
+              <li>Robots / XML Sitemap 정기 세척</li>
+              <li>IndexNow 정기 투약 보증</li>
+              <li>30일 색인 유지 보증</li>
+            </ul>
+            <a href="#" class="btn-minimal">레귤러 케어 신청</a>
+          </div>
+          <div class="price-box premium">
+            <div class="price-header">
+              <h3>Intensive ICU Care</h3>
+              <div class="price-val">₩1,500,000</div>
+            </div>
+            <ul class="price-list">
+              <li>Regular Care 모든 과정 포함</li>
+              <li>E-E-A-T 프레임워크 강제 설계</li>
+              <li>구글 페널티 긴급 치료 수술 병행</li>
+              <li>웹마스터 24시간 모니터링 알람 연동</li>
+            </ul>
+            <a href="#" class="btn-minimal" style="background: var(--text-charcoal); color: var(--bg-white);">집중 치료 의뢰</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <p style="font-weight: 800; color: var(--text-charcoal); font-size: 0.8rem; margin-bottom: 10px;">OSAKA NURSE LAB</p>
+        <p>오사카 너스 — 구글 크롤링 및 인덱싱 가속 전문 간호 센터</p>
+      </div>
+      <div>
+        <div class="footer-links" style="margin-bottom: 15px;">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Contact</a>
+        </div>
+        <p>© 2026 Osaka Nurse Lab. All rights reserved.</p>
       </div>
     </div>
-    
-  </div>
-  <footer>
-    <p>&copy; 2026 nurse-kyujin.online. All Rights Reserved.</p>
   </footer>
+
 </body>
 </html>
